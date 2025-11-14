@@ -2,26 +2,27 @@
   class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-10 bg-slate-950 text-slate-100"
 >
   <div class="w-full max-w-md">
-    <!-- Nagłówek strony -->
+    <!-- Header -->
     <div class="mb-6 text-center">
       <p class="text-[10px] uppercase tracking-[0.35em] text-cyan-400/80">
         sparkly
       </p>
       <h1 class="mt-2 text-2xl font-semibold tracking-tight">
-        Załóż konto
+        Create your account
       </h1>
       <p class="mt-1 text-sm text-slate-400">
-        Dołącz do twórców budujących swoje projekty na oczach świata.
+        Join thousands of builders who use Sparkly to track their projects and
+        collaborate with others.
       </p>
     </div>
 
-    <!-- Karta z formularzem -->
+    <!-- Form -->
     <form
       [formGroup]="registerForm"
       (ngSubmit)="onSubmit()"
       class="space-y-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-6 shadow-xl shadow-slate-950/60 backdrop-blur"
     >
-      <!-- Globalny błąd z API -->
+      <!-- Global api error -->
       <div
         *ngIf="formError"
         class="rounded-xl border border-red-500/40 bg-red-950/40 px-3 py-2 text-xs text-red-100"
@@ -35,13 +36,13 @@
           for="displayName"
           class="block text-xs font-medium text-slate-300"
         >
-          Nazwa wyświetlana
+          Display name
         </label>
         <input
           id="displayName"
           type="text"
-          formControlName="displayName"
-          placeholder="np. dalkedev"
+          formControlName="username"
+          placeholder="e.g. dalkedev"
           class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
         />
       </div>
@@ -66,7 +67,7 @@
           for="password"
           class="block text-xs font-medium text-slate-300"
         >
-          Hasło
+          Password
         </label>
         <input
           id="password"
@@ -76,7 +77,7 @@
           class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
         />
         <p class="text-[11px] text-slate-500">
-          Minimum 8 znaków, zadbaj o sensowne hasło.
+          Minimum 8 characters, make sure your password makes sense.
         </p>
       </div>
 
@@ -86,7 +87,7 @@
           for="confirmPassword"
           class="block text-xs font-medium text-slate-300"
         >
-          Powtórz hasło
+          Repeat password
         </label>
         <input
           id="confirmPassword"
@@ -106,8 +107,7 @@
           class="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-900 text-cyan-400 focus:ring-cyan-400"
         />
         <label for="terms" class="text-xs text-slate-400">
-          Akceptuję regulamin i zgadzam się na przetwarzanie danych
-          w celu założenia konta.
+          I accept the terms and conditions and consent to the processing of my data for the purpose of creating an account.
         </label>
       </div>
 
@@ -122,18 +122,18 @@
           <span
             class="h-3 w-3 animate-spin rounded-full border-2 border-slate-900 border-t-transparent"
           ></span>
-          Rejestruję…
+          Registering…
         </span>
       </button>
 
-      <!-- Link do logowania -->
+      <!-- Login link -->
       <p class="pt-1 text-center text-xs text-slate-400">
-        Masz już konto?
+        Already have an account?
         <a
           routerLink="/login"
           class="font-medium text-cyan-400 hover:text-cyan-300"
         >
-          Zaloguj się
+          Log in
         </a>
       </p>
     </form>
