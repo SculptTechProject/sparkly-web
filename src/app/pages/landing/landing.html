@@ -1,8 +1,143 @@
-<main>
-  <section class="space-y-4">
-    <h1 class="text-2xl font-semibold">Welcome Sparkly!</h1>
-    <p class="text-slate-300">
-      There will be a landing page here soon. (Ofc guarded :P)
+<main class="mx-auto max-w-5xl px-4 py-16 md:py-24">
+  <section class="flex flex-col items-center gap-12 md:flex-row">
+    <!-- LEFT -->
+    <div class="flex-1 space-y-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+        Build in public
+      </p>
+
+      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+        Ship your ideas with Sparkly.
+      </h1>
+
+      <p class="max-w-xl text-sm text-slate-300 md:text-base">
+        Sparkly is your space to track progress, share updates and collaborate with people
+        who care about building things. One place for your roadmap, milestones and launch plans.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          class="rounded-full bg-cyan-500 px-5 py-2 text-sm font-semibold text-slate-950
+                 hover:bg-cyan-400 transition-colors"
+        >
+          Start building for free
+        </button>
+
+        <button
+          type="button"
+          class="rounded-full border border-slate-700 px-5 py-2 text-sm font-medium
+                 text-slate-200 hover:border-cyan-400 hover:text-cyan-400
+                 transition-colors"
+        >
+          View the roadmap
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        No credit card required. Upgrade only when your project takes off.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="flex-1">
+      <img
+        ngSrc="/assets/img/landinghero.png"
+        width="1152"
+        height="768"
+        priority
+        alt="Sparkly collaboration hero illustration"
+        class="mx-auto w-full max-w-xl drop-shadow-[0_0_40px_rgba(56,189,248,0.35)]"
+      />
+    </div>
+  </section>
+
+<!--  Why Sparkly  -->
+  <section class="mx-auto mt-20 max-w-5xl px-4">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+      Why builders use Sparkly
     </p>
+
+    <h2 class="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+      Made for people who actually ship things.
+    </h2>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <p class="text-sm font-semibold text-slate-50">Stay accountable</p>
+        <p class="mt-2 text-sm text-slate-300">
+          Turn vague ideas into a public roadmap with milestones you can track and celebrate.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <p class="text-sm font-semibold text-slate-50">Share real progress</p>
+        <p class="mt-2 text-sm text-slate-300">
+          Post honest updates, not just launch screenshots. Show the process, not only the result.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <p class="text-sm font-semibold text-slate-50">Build your supporters</p>
+        <p class="mt-2 text-sm text-slate-300">
+          Let people follow your journey early so launch day is not day one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!--  How Sparkly works  -->
+  <section class="mx-auto mt-20 max-w-5xl px-4">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+      How Sparkly works
+    </p>
+
+    <h2 class="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+      From idea to launch in three simple steps.
+    </h2>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      <!-- Step 1 -->
+      <div class="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <div
+          class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full
+               bg-slate-800 text-xs font-semibold text-slate-100"
+        >
+          1
+        </div>
+        <p class="text-sm font-semibold text-slate-50">Create your project</p>
+        <p class="mt-2 text-sm text-slate-300">
+          Name your idea, set a rough goal and add the first milestones. No complex setup.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <div
+          class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full
+               bg-slate-800 text-xs font-semibold text-slate-100"
+        >
+          2
+        </div>
+        <p class="text-sm font-semibold text-slate-50">Share honest updates</p>
+        <p class="mt-2 text-sm text-slate-300">
+          Log progress as short updates. Celebrate wins, admit blockers, keep your story real.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
+        <div
+          class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full
+               bg-slate-800 text-xs font-semibold text-slate-100"
+        >
+          3
+        </div>
+        <p class="text-sm font-semibold text-slate-50">Launch with momentum</p>
+        <p class="mt-2 text-sm text-slate-300">
+          When you are ready to launch, you already have context, followers and a story behind it.
+        </p>
+      </div>
+    </div>
   </section>
 </main>

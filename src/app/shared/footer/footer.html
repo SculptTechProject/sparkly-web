@@ -1,0 +1,41 @@
+<footer class="mt-20 border-t border-slate-800 bg-slate-950/90">
+  <div
+    class="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 text-sm text-slate-400 md:flex-row md:items-center md:justify-between"
+  >
+    <!-- Left: logo + tagline -->
+    <div class="space-y-1">
+      <div class="flex items-center gap-2">
+        <div
+          class="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-400 to-violet-500 text-xs font-bold text-slate-950"
+        >
+          S
+        </div>
+        <span class="text-sm font-semibold text-slate-100">Sparkly</span>
+      </div>
+      <p class="text-xs text-slate-500">
+        Build in public. Ship better products with people watching.
+      </p>
+    </div>
+
+    <!-- Middle: links -->
+    <div class="flex flex-wrap items-center gap-4 text-xs md:gap-6">
+      <a routerLink="/pricing" class="hover:text-cyan-400 transition-colors cursor-pointer">
+        Pricing
+      </a>
+      <a routerLink="/community" class="hover:text-cyan-400 transition-colors cursor-pointer">
+        Community
+      </a>
+      <a href="#" class="hover:text-cyan-400 transition-colors cursor-pointer">
+        Changelog
+      </a>
+      <a href="#" class="hover:text-cyan-400 transition-colors cursor-pointer">
+        Docs
+      </a>
+    </div>
+
+    <!-- Right: copyright / small text -->
+    <div class="text-xs text-slate-500">
+      <p>© {{ currentYear }} Sparkly. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

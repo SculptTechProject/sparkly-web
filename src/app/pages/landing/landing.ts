@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import {Navbar} from '../../shared/navbar/navbar';
+import { NgOptimizedImage } from '@angular/common'
 
 @Component({
   selector: 'app-landing',
-  imports: [
-    Navbar
-  ],
+  imports: [NgOptimizedImage],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
