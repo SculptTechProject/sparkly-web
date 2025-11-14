@@ -1,0 +1,89 @@
+<nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur">
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
+    <!-- Logo + nazwa -->
+    <a
+      class="flex items-center gap-2 hover:opacity-90 transition"
+      routerLink="/"
+      aria-label="Sparkly – strona główna"
+    >
+      <div
+        class="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-400 to-violet-500 text-sm font-bold"
+      >
+        S
+      </div>
+      <div class="leading-tight">
+        <p class="text-sm font-semibold tracking-wide">Sparkly</p>
+      </div>
+    </a>
+
+    <!-- Linki nawigacyjne -->
+    <div class="hidden items-center gap-6 text-sm md:flex">
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="text-cyan-400"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
+      >
+        Dashboard
+      </a>
+      <a
+        routerLink="/community"
+        routerLinkActive="text-cyan-400"
+        class="text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
+      >
+        Społeczność
+      </a>
+      <a
+        routerLink="/pricing"
+        routerLinkActive="text-cyan-400"
+        class="text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
+      >
+        Cennik
+      </a>
+    </div>
+
+    <!-- Akcje -->
+    <div class="flex items-center gap-3">
+      <!-- Wersja PUBLIC (landing, pricing itd.) -->
+      <ng-container *ngIf="!isDashboard; else dashboardActions">
+        <button
+          type="button"
+          class="hidden rounded-full border border-slate-700 px-3 py-1 text-xs font-medium
+             text-slate-200 hover:border-cyan-400 hover:text-cyan-400
+             transition-colors md:inline-flex"
+          routerLink="/login"
+        >
+          Zaloguj się
+        </button>
+        <button
+          type="button"
+          class="rounded-full bg-cyan-500 px-3 py-1 text-xs font-semibold
+             text-slate-950 hover:bg-cyan-400 transition-colors"
+          routerLink="/register"
+        >
+          Dołącz do Sparkly
+        </button>
+      </ng-container>
+
+      <!-- Wersja DASHBOARD -->
+      <ng-template #dashboardActions>
+        <button
+          type="button"
+          class="rounded-full border border-slate-700 px-3 py-1 text-xs font-medium
+             text-slate-200 hover:border-cyan-400 hover:text-cyan-400
+             transition-colors"
+          routerLink="/account"
+        >
+          Moje konto
+        </button>
+        <button
+          type="button"
+          class="rounded-full bg-slate-800 px-3 py-1 text-xs font-semibold
+             text-slate-200 hover:bg-slate-700 transition-colors"
+        >
+          Wyloguj
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</nav>
