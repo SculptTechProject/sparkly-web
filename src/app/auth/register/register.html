@@ -1,1 +1,141 @@
-<p>register works!</p>
+<section
+  class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-10 bg-slate-950 text-slate-100"
+>
+  <div class="w-full max-w-md">
+    <!-- Nagłówek strony -->
+    <div class="mb-6 text-center">
+      <p class="text-[10px] uppercase tracking-[0.35em] text-cyan-400/80">
+        sparkly
+      </p>
+      <h1 class="mt-2 text-2xl font-semibold tracking-tight">
+        Załóż konto
+      </h1>
+      <p class="mt-1 text-sm text-slate-400">
+        Dołącz do twórców budujących swoje projekty na oczach świata.
+      </p>
+    </div>
+
+    <!-- Karta z formularzem -->
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+      class="space-y-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-6 shadow-xl shadow-slate-950/60 backdrop-blur"
+    >
+      <!-- Globalny błąd z API -->
+      <div
+        *ngIf="formError"
+        class="rounded-xl border border-red-500/40 bg-red-950/40 px-3 py-2 text-xs text-red-100"
+      >
+        {{ formError }}
+      </div>
+
+      <!-- Display name -->
+      <div class="space-y-1.5">
+        <label
+          for="displayName"
+          class="block text-xs font-medium text-slate-300"
+        >
+          Nazwa wyświetlana
+        </label>
+        <input
+          id="displayName"
+          type="text"
+          formControlName="displayName"
+          placeholder="np. dalkedev"
+          class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="space-y-1.5">
+        <label for="email" class="block text-xs font-medium text-slate-300">
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="space-y-1.5">
+        <label
+          for="password"
+          class="block text-xs font-medium text-slate-300"
+        >
+          Hasło
+        </label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+        />
+        <p class="text-[11px] text-slate-500">
+          Minimum 8 znaków, zadbaj o sensowne hasło.
+        </p>
+      </div>
+
+      <!-- Confirm password -->
+      <div class="space-y-1.5">
+        <label
+          for="confirmPassword"
+          class="block text-xs font-medium text-slate-300"
+        >
+          Powtórz hasło
+        </label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="••••••••"
+          class="w-full rounded-xl border border-slate-800 bg-slate-950/70 px-3 py-2.5 text-sm outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+        />
+      </div>
+
+      <!-- Checkbox regulamin / newsletter -->
+      <div class="flex items-start gap-2 pt-1">
+        <input
+          id="terms"
+          type="checkbox"
+          formControlName="acceptTerms"
+          class="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-900 text-cyan-400 focus:ring-cyan-400"
+        />
+        <label for="terms" class="text-xs text-slate-400">
+          Akceptuję regulamin i zgadzam się na przetwarzanie danych
+          w celu założenia konta.
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid || isSubmitting"
+        class="relative flex w-full items-center justify-center overflow-hidden rounded-xl bg-gradient-to-tr from-cyan-400 to-violet-500 px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <span *ngIf="!isSubmitting">Załóż konto</span>
+        <span *ngIf="isSubmitting" class="flex items-center gap-2">
+          <span
+            class="h-3 w-3 animate-spin rounded-full border-2 border-slate-900 border-t-transparent"
+          ></span>
+          Rejestruję…
+        </span>
+      </button>
+
+      <!-- Link do logowania -->
+      <p class="pt-1 text-center text-xs text-slate-400">
+        Masz już konto?
+        <a
+          routerLink="/login"
+          class="font-medium text-cyan-400 hover:text-cyan-300"
+        >
+          Zaloguj się
+        </a>
+      </p>
+    </form>
+  </div>
+</section>
