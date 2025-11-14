@@ -1,59 +1,191 @@
-# Sparkly
+# Sparkly Web
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
+Frontend client for **Sparkly**, a build‑in‑public social platform. This repository contains the Angular + Tailwind web application that talks to the `sparkly-server` backend and renders the user interface.
 
-## Development server
+> Status: early development – routes, layout and components are actively changing.
 
-To start a local development server, run:
+---
+
+## Tech stack
+
+* **Framework**: Angular (standalone components, Angular router)
+* **Styling**: Tailwind CSS
+* **Build tool**: Angular CLI / Vite (depending on setup)
+* **Language**: TypeScript
+
+Sparkly Web is designed to be a classic SPA (single‑page application) that communicates with the backend via JSON APIs.
+
+---
+
+## Project structure
+
+High‑level folder layout (may evolve as the app grows):
+
+```text
+sparkly-web/
+├─ src/
+│  ├─ app/
+│  │  ├─ core/              # core services (auth, api client, interceptors)
+│  │  ├─ shared/            # shared UI components (navbar, buttons, layout)
+│  │  ├─ features/
+│  │  │  ├─ auth/           # login, register, password reset
+│  │  │  ├─ dashboard/      # main in-app experience
+│  │  │  ├─ profile/        # user profile & settings
+│  │  ├─ app.routes.ts      # top-level route configuration
+│  │  ├─ app.config.ts      # application providers (router, http, etc.)
+│  │  └─ app.component.*    # root shell / layout
+│  ├─ assets/               # static assets (icons, logos, images)
+│  └─ styles.css            # global styles + Tailwind entry
+├─ tailwind.config.js       # Tailwind config (content, theme extensions)
+├─ postcss.config.js        # PostCSS pipeline for Tailwind
+├─ angular.json             # Angular workspace config
+└─ package.json             # dependencies and scripts
+```
+
+This structure is meant to grow into a feature‑based layout where each feature module (e.g. `auth`, `dashboard`) owns its own components, routes and services.
+
+---
+
+## Getting started
+
+### Prerequisites
+
+* Node.js (LTS version recommended)
+* npm or pnpm
+* Angular CLI installed globally (optional but convenient)
+
+### 1. Install dependencies
 
 ```bash
+npm install
+# or
+pnpm install
+```
+
+### 2. Configure environment
+
+Environment files live under `src/environments/` (for classic Angular setup) or in a custom config layer if you are using another approach.
+
+Typical configuration values you will need:
+
+* `API_BASE_URL` – base URL of the `sparkly-server` backend
+* `APP_NAME` – application name shown in the UI / title
+
+Keep real production URLs and keys out of the repository; commit only safe defaults and examples.
+
+### 3. Run the dev server
+
+```bash
+npm start
+# usually equivalent to:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+By default the app runs at `http://localhost:4200` (unless overridden). Make sure the backend (`sparkly-server`) is running and the `API_BASE_URL` is set correctly if you want live data.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tailwind CSS
 
-```bash
-ng generate component component-name
+Tailwind is used as the main styling system.
+
+Global setup (in `styles.css`):
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Tailwind scans HTML and TypeScript templates via `tailwind.config.js`:
 
-```bash
-ng generate --help
+```js
+export default {
+  content: ['./src/**/*.{html,ts}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
 ```
 
-## Building
+When adding new components or layouts, use Tailwind utility classes and, where it makes sense, extract reusable pieces into shared components.
 
-To build the project run:
+---
+
+## Routing & layout
+
+The app uses Angular Router with a root shell component that provides the main layout (background, navbar, content area). A typical setup looks like this:
+
+* `AppComponent` – wraps the whole app, renders `<app-navbar>` and `<router-outlet>` inside a layout container
+* `NavbarComponent` – top navigation bar shared across most routes
+* `routes` – defined in `app.routes.ts`, for example:
+
+  * `/` – public landing page
+  * `/dashboard` – main in-app experience (requires auth)
+  * `/login`, `/register` – authentication pages
+
+As the app grows, consider lazy loading feature routes (e.g. `dashboard`, `profile`) to keep bundle size under control.
+
+---
+
+## Talking to the backend
+
+Sparkly Web communicates with `sparkly-server` via HTTP (REST‑style JSON endpoints).
+
+Recommended pattern:
+
+* central `ApiService` that wraps Angular `HttpClient` and handles base URL, headers and error handling
+* feature‑specific services (e.g. `AuthService`, `ProjectsService`, `ProfileService`) built on top of `ApiService`
+* interceptors for auth (attach JWT / access token to outgoing requests)
+
+Example responsibilities:
+
+* `AuthService`: login, logout, register, refresh token, current user info
+* `DashboardService`: fetch dashboard data / feed
+* `ProfileService`: user profile details, updating profile settings
+
+---
+
+## Scripts
+
+Commonly useful npm scripts (adjust names to match `package.json`):
 
 ```bash
-ng build
+npm run start       # start dev server
+npm run build       # production build
+npm run lint        # lint the project
+npm run test        # run unit tests (if configured)
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Check `package.json` in this repo for the exact script names.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Roadmap ideas
 
-```bash
-ng test
-```
+Potential next steps for Sparkly Web:
 
-## Running end-to-end tests
+* Auth flow: login, registration, password reset, basic guard for protected routes.
+* First version of the dashboard (projects, updates, basic feed UI).
+* Profile page with editable user information.
+* Responsive navigation (mobile menu / sidebar for smaller screens).
+* Integration with real backend data and, later on, billing state from Stripe.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Contributing
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+This frontend is developed together with the Sparkly backend (`sparkly-server`). External contributions are welcome once the main architecture stabilises.
 
-## Additional Resources
+If you want to suggest improvements:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* open an issue with screenshots and a short description, or
+* open a draft PR with your proposed UI/UX changes.
+
+---
+
+## License
+
+License: **TBD**
+
+Until a license is added, treat this repository as source‑available but not licensed for unrestricted commercial reuse.
