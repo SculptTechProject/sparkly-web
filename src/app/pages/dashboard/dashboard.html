@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div *ngIf="me$ | async as me" class="mb-6">
+  <p class="text-xs text-slate-400 uppercase tracking-[0.25em]">
+    Welcome back
+  </p>
+  <h1 class="text-2xl font-semibold mt-1">
+    {{ me.userName }}
+  </h1>
+  <p class="text-sm text-slate-500">
+    {{ me.email }}
+  </p>
+</div>

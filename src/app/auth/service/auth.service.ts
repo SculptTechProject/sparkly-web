@@ -18,8 +18,32 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/auth/register`, data);
   }
 
+  refresh(refreshToken: string): Observable<AuthResults> {
+    return this.http.post<AuthResults>(`${this.apiUrl}/auth/refresh`, {
+      refreshToken,
+    });
+  }
+
+  saveTokens(result: AuthResults): void {
+    localStorage.setItem('accessToken', result.accessToken);
+    localStorage.setItem('refreshToken', result.refreshToken);
+  }
+
+  clearTokens(): void {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refreshToken');
+  }
+
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('accessToken');
+    const token = this.getAccessToken();
     return !!token;
   }
 }
