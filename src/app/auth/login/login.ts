@@ -57,14 +57,19 @@ export class Login {
       })
       .subscribe({
         next: (result: any) => {
-          localStorage.setItem('accessToken', result.accessToken);
+          this.auth.saveTokens(result);
           this.isSubmitting = false;
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.isSubmitting = false;
-          this.formError = 'Something went wrong: ' + err.message;
+
+          if (err.status === 401) {
+            this.formError = 'Invalid email / username or password.';
+          } else {
+            this.formError = 'Something went wrong: ' + err.message;
+          }
         }
-    })
+      })
   }
 }
