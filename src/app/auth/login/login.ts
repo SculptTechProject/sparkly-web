@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../services/auth.service';
 import { NgIf } from '@angular/common';
 import {AuthResults} from '../models/auth.results';
 
