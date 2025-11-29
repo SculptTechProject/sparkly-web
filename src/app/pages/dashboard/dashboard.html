@@ -12,26 +12,59 @@
   </p>
 </div>
 
-<div *ngIf="projects$ | async as projects">
-  <h2 class="text-lg font-semibold mb-3">
-    Public projects
-  </h2>
+<!-- CONTAINER FOR POSTS + PROJECTS -->
+<div class="mt-8 grid gap-8 lg:grid-cols-3 items-start">
 
-  <div *ngIf="projects.length === 0" class="text-sm text-slate-500">
-    No projects yet.
-  </div>
+  <!-- LEFT COLUMN: POSTS -->
+  <section *ngIf="posts$ | async as posts" class="lg:col-span-2">
+    <h2 class="text-lg font-semibold mb-3">
+      Latest posts
+    </h2>
 
-  <ul *ngIf="projects.length > 0" class="space-y-3">
-    <li *ngFor="let p of projects" class="border rounded-lg p-3">
-      <p class="text-sm text-slate-400 uppercase tracking-[0.2em]">
-        {{ p.ownerUserName }}
-      </p>
-      <h3 class="text-base font-semibold">
-        {{ p.projectName }}
-      </h3>
-      <p class="text-sm text-slate-500" *ngIf="p.description">
-        {{ p.description }}
-      </p>
-    </li>
-  </ul>
+    <p *ngIf="posts.length === 0" class="text-sm text-slate-500">
+      No posts yet.
+    </p>
+
+    <ul *ngIf="posts.length > 0" class="space-y-3">
+      <li *ngFor="let post of posts" class="border rounded-lg p-3">
+        <h3 class="font-semibold text-base">
+          {{ post.title }}
+        </h3>
+
+        <p class="text-xs text-slate-500 mt-1">
+          {{ post.createdAt | date:'short' }}
+        </p>
+
+        <p class="mt-2 text-sm text-slate-100">
+          {{ post.content }}
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- RIGHT COLUMN: PROJECTS -->
+  <aside *ngIf="projects$ | async as projects" class="lg:col-span-1">
+    <h2 class="text-lg font-semibold mb-3">
+      Public projects
+    </h2>
+
+    <div *ngIf="projects.length === 0" class="text-sm text-slate-500">
+      No projects yet.
+    </div>
+
+    <ul *ngIf="projects.length > 0" class="space-y-3">
+      <li *ngFor="let p of projects" class="border rounded-lg p-3">
+        <p class="text-xs text-slate-400 uppercase tracking-[0.2em]">
+          {{ p.ownerUserName }}
+        </p>
+        <h3 class="text-sm font-semibold">
+          {{ p.projectName }}
+        </h3>
+        <p class="text-xs text-slate-500" *ngIf="p.description">
+          {{ p.description }}
+        </p>
+      </li>
+    </ul>
+  </aside>
+
 </div>
